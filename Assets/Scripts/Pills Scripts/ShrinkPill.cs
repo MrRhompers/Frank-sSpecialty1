@@ -4,6 +4,8 @@ public class ShrinkPill : MonoBehaviour
 {
     [SerializeField] private float pillLifetime;
 
+    public GameObject Icon;
+
     private GameObject Player;
 
     private Renderer meshRenderer;
@@ -12,7 +14,10 @@ public class ShrinkPill : MonoBehaviour
     private Vector3 originalSize;
     private Vector3 shrunkSize = new Vector3(0.3f, 0.3f, 0.3f);
 
-    private bool hasShrunk = false;
+    public bool hasShrunk = false;
+
+    private bool timerStarted = false;
+    private float elapsedTime;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -27,7 +32,24 @@ public class ShrinkPill : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (hasShrunk)
+        {
+            Player.transform.localScale = shrunkSize;
+            timerStarted = true;
 
+            if (timerStarted)
+            {
+                elapsedTime += Time.deltaTime;
+
+                if (elapsedTime >= pillLifetime)
+                {
+                   UnShrink();
+                }
+
+            }
+
+
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -40,6 +62,7 @@ public class ShrinkPill : MonoBehaviour
                 meshRenderer.enabled = false;
                 Collider.enabled = false;
                 Player.transform.localScale = shrunkSize;
+                Icon.SetActive(true);
                 Invoke("UnShrink", pillLifetime);
             }
 
@@ -50,5 +73,7 @@ public class ShrinkPill : MonoBehaviour
     {
         hasShrunk = false;
         Player.transform.localScale = originalSize;
+        timerStarted = false;
+        elapsedTime = 0;
     }
 }

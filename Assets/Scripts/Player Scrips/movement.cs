@@ -23,6 +23,8 @@ public class Movement : MonoBehaviour
     public float FloatPillTimer;
     public bool PillReadySlick;  
     public bool PillReadyFloat;
+    public bool hasSlickPill;
+    public bool hasFloatPill;
 
     [Header("References")]
     public Camera PlayerCam;
@@ -135,6 +137,7 @@ public class Movement : MonoBehaviour
 
         if (PillReadySlick)
         {
+            hasSlickPill = true;
             WalkSpeed = 30;
             SlickPillTimer = 30f;
             SmoothMoveTime = 4f;
@@ -157,6 +160,7 @@ public class Movement : MonoBehaviour
         }
         if (PillReadyFloat) 
         {
+            hasFloatPill = true;
             grav = -2f;
             jumpforce = 8;
             PillReadyFloat = false;
