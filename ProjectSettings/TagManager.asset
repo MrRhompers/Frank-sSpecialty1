@@ -9,6 +9,9 @@ TagManager:
   - TitaniumPill
   - RevealPill
   - FrankPill
+  - Spikes
+  - Fall
+  - Crusher
   layers:
   - Default
   - TransparentFX
