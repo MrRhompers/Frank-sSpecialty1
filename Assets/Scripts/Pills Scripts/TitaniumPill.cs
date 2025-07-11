@@ -96,7 +96,7 @@ public class TitaniumPill : MonoBehaviour
         }
     }
 
-    void ResetPillEffects()
+    public void ResetPillEffects()
     {
         hasTitaniumPill = false;
         movementScript.ResetControls();

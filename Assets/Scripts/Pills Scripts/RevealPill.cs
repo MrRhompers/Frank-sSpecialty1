@@ -65,7 +65,7 @@ public class RevealPill : MonoBehaviour
     }
 
 
-    void ResetPillEffects()
+   public void ResetPillEffects()
     {
         isRevealed = false;
         mainCamera.SetActive(true);

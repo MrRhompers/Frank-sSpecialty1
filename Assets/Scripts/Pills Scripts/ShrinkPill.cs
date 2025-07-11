@@ -72,7 +72,7 @@ public class ShrinkPill : MonoBehaviour
         }
     }
 
-    void UnShrink()
+   public  void UnShrink()
     {
         hasShrunk = false;
         Player.transform.localScale = originalSize;

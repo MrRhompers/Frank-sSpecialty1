@@ -34,6 +34,7 @@ public class Movement : MonoBehaviour
     [Header("References")]
     public Camera PlayerCam;
     Frank frankRef;
+    private TitaniumPill titaniumPillScript;
    
     private CharacterController controller;
     private Vector3 MoveVector;
@@ -67,6 +68,7 @@ public class Movement : MonoBehaviour
         {
             checkPointManager = FindAnyObjectByType<CheckPointManager>();
         }
+        titaniumPillScript = FindAnyObjectByType<TitaniumPill>();
         defaultYpos = PlayerCam.transform.localPosition.y;
         slickLifetime = SlickPillTimer;
         floatLifetime = FloatPillTimer;
@@ -176,7 +178,7 @@ public class Movement : MonoBehaviour
         {
             WalkSpeed = 30;
             SmoothMoveTime = 4f;
-            //SlickPillTimer = 3f;
+            SlickPillTimer = 30f;
             slickEffectStarted = true;
            
         }
@@ -207,7 +209,7 @@ public class Movement : MonoBehaviour
            
             grav = -2f;
             jumpforce = 8f;
-            //FloatPillTimer = 3f;
+            FloatPillTimer = 30f;
             floatEffectStarted = true;
         }
 
@@ -250,23 +252,24 @@ public class Movement : MonoBehaviour
             floatIcon.SetActive(true);
             audioplay.PlayOneShot(floatcollect);
         }
-        if (other.gameObject.CompareTag("Spikes")) 
+        if (other.gameObject.CompareTag("Spikes") && !titaniumPillScript.hasTitaniumPill) 
         {
             frankRef.PlaySpikeDeath();
             checkPointManager.Respawn();
         }
-        if (other.gameObject.CompareTag("Crusher"))
+        if (other.gameObject.CompareTag("Crusher") && !titaniumPillScript.hasTitaniumPill)
         {
             frankRef.PlaycrushedDeath();
             checkPointManager.Respawn();
         }
-        if (other.gameObject.CompareTag("Fire"))
+        if (other.gameObject.CompareTag("Fire") && !titaniumPillScript.hasTitaniumPill)
         {
             frankRef.PlayfireDeath();
             checkPointManager.Respawn();
         }
-        if (other.gameObject.CompareTag("Water"))
+        if (other.gameObject.CompareTag("Water") && !titaniumPillScript.hasTitaniumPill)
         {
+         
             frankRef.Playwaterdeath();
             checkPointManager.Respawn();
         }
