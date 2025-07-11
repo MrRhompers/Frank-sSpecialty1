@@ -14,6 +14,8 @@ public class Inventory : MonoBehaviour
     private bool canPress5;
     private bool canPress6;
 
+    Frank Frankref;
+
     public bool canUsePill = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -22,7 +24,7 @@ public class Inventory : MonoBehaviour
         revealPillScript = FindAnyObjectByType<RevealPill>();
         shrinkPillScript = FindAnyObjectByType<ShrinkPill>();
         TitaniumPillScript = FindAnyObjectByType<TitaniumPill>();
-       
+       Frankref = FindAnyObjectByType<Frank>();
     }
 
     // Update is called once per frame
@@ -112,6 +114,7 @@ public class Inventory : MonoBehaviour
                 TitaniumPillScript.effectStarted = true;
                 TitaniumPillScript.timerStarted = true;
                 canUsePill = true;
+                Frankref.PlayFrankPill();
             }
         }
     }
