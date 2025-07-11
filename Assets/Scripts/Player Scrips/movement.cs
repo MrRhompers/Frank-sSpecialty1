@@ -47,6 +47,13 @@ public class Movement : MonoBehaviour
     public GameObject slickIcon;
     public GameObject floatIcon;
 
+    [Header("Random Controls")]
+
+    private KeyCode moveForward = KeyCode.W;
+    private KeyCode moveBackward = KeyCode.S;
+    private KeyCode moveLeft = KeyCode.A;
+    private KeyCode moveRight = KeyCode.D;
+    public bool isControlScrambled = false;
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -92,7 +99,24 @@ public class Movement : MonoBehaviour
 
     public void CharMovement()
     {
-        Vector3 input = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+
+        float x = 0;
+        float z = 0;
+
+        if (!isControlScrambled)
+        {
+            x = Input.GetAxisRaw("Horizontal");
+            z = Input.GetAxisRaw("Vertical");
+        }
+        else
+        {
+            if (Input.GetKey(moveLeft)) x = -1;
+            if (Input.GetKey(moveRight)) x = 1;
+            if (Input.GetKey(moveBackward)) z = -1;
+            if (Input.GetKey(moveForward)) z = 1;
+        }
+
+        Vector3 input = new Vector3(x, 0, z);
 
         if (input.magnitude > 1f)
             input.Normalize();
@@ -225,6 +249,25 @@ public class Movement : MonoBehaviour
         {
             checkPointManager.Respawn();
         }
+    }
+
+    public void SetScrambledControls(KeyCode forward, KeyCode backward, KeyCode left, KeyCode right)
+    {
+        moveForward = forward;
+        moveBackward = backward;
+        moveLeft = left;
+        moveRight = right;
+        isControlScrambled = true;
+    }
+
+
+    public void ResetControls()
+    {
+        moveForward = KeyCode.W;
+        moveBackward = KeyCode.S;
+        moveLeft = KeyCode.A;
+        moveRight = KeyCode.D;
+        isControlScrambled = false;
     }
 }
 

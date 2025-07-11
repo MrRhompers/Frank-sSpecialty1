@@ -5,7 +5,7 @@ public class Inventory : MonoBehaviour
     private Movement movementScript;
     private ShrinkPill shrinkPillScript;
     private RevealPill revealPillScript;
-   
+    private TitaniumPill TitaniumPillScript;
 
     private bool canPress1;
     private bool canPress2;
@@ -14,12 +14,14 @@ public class Inventory : MonoBehaviour
     private bool canPress5;
     private bool canPress6;
 
+    public bool canUsePill = false;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         movementScript = FindAnyObjectByType<Movement>();
         revealPillScript = FindAnyObjectByType<RevealPill>();
         shrinkPillScript = FindAnyObjectByType<ShrinkPill>();
+        TitaniumPillScript = FindAnyObjectByType<TitaniumPill>();
        
     }
 
@@ -47,8 +49,11 @@ public class Inventory : MonoBehaviour
         }
         if (revealPillScript.isRevealed)
         {
-           
             canPress4 = true;
+        }
+        if (TitaniumPillScript.hasTitaniumPill)
+        {
+            canPress5 = true;
             
         }
     }
@@ -94,6 +99,19 @@ public class Inventory : MonoBehaviour
                
                 revealPillScript.isRevealed = true;
                
+            }
+        }
+
+        if (canPress5)
+        {
+
+            if (Input.GetKeyUp(KeyCode.Alpha5) && !TitaniumPillScript.canUsePill)
+            {
+
+                TitaniumPillScript.hasTitaniumPill = true;
+                TitaniumPillScript.effectStarted = true;
+                TitaniumPillScript.timerStarted = true;
+                canUsePill = true;
             }
         }
     }
