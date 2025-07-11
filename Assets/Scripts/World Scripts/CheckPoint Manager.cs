@@ -7,11 +7,13 @@ public class CheckPointManager : MonoBehaviour
     public Transform[] checkpoints;
     public Transform[] respawnPoints;
 
+    private CharacterController characterController;
     private int currentRespawnPoint = 0;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        characterController = player.GetComponent<CharacterController>();
     }
 
     void Update()
@@ -29,13 +31,14 @@ public class CheckPointManager : MonoBehaviour
 
    public void Respawn()
     {
+       
+        if (characterController != null)
+            characterController.enabled = false;
+
         player.transform.position = respawnPoints[currentRespawnPoint].position;
 
-        Rigidbody rb = player.GetComponent<Rigidbody>();
-        if (rb != null)
-        {
-            rb.linearVelocity = Vector3.zero;
-        }
+        if  (characterController != null)
+            characterController.enabled = true;
     }
 
     public void UpdateCheckpoint(int checkpointIndex)
