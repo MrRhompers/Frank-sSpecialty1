@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3463701412131341383}
   m_Layer: 0
   m_Name: Pill Shrink
-  m_TagString: FrankPill
+  m_TagString: ShrinkPill
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -179,4 +179,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pillLifetime: 30
   Icon: {fileID: 0}
+  slider: {fileID: 0}
   hasShrunk: 0
+  elapsedTime: 0
+  audioplay: {fileID: 0}
+  shrinkcollect: {fileID: 8300000, guid: 5f98f0732c9f5224ab5cf05d224bab7d, type: 3}

@@ -2,9 +2,10 @@ using UnityEngine;
 
 public class ShrinkPill : MonoBehaviour
 {
-    [SerializeField] private float pillLifetime;
+    public float pillLifetime;
 
     public GameObject Icon;
+    public GameObject slider;
 
     private GameObject Player;
 
@@ -17,7 +18,7 @@ public class ShrinkPill : MonoBehaviour
     public bool hasShrunk = false;
 
     private bool timerStarted = false;
-    private float elapsedTime;
+    public float elapsedTime;
     public AudioSource audioplay;
     public AudioClip shrinkcollect;
 
@@ -38,6 +39,7 @@ public class ShrinkPill : MonoBehaviour
         {
             Player.transform.localScale = shrunkSize;
             timerStarted = true;
+            slider.SetActive(true);
 
             if (timerStarted)
             {
@@ -61,6 +63,7 @@ public class ShrinkPill : MonoBehaviour
             hasShrunk = true;
             if (hasShrunk)
             {
+                slider.SetActive(true);
                 meshRenderer.enabled = false;
                 Collider.enabled = false;
                 Player.transform.localScale = shrunkSize;
@@ -74,6 +77,7 @@ public class ShrinkPill : MonoBehaviour
 
    public  void UnShrink()
     {
+        slider.SetActive(false);
         hasShrunk = false;
         Player.transform.localScale = originalSize;
         timerStarted = false;

@@ -5,14 +5,14 @@ public class RevealPill : MonoBehaviour
     public bool isRevealed = false;
     public GameObject mainCamera;
     public GameObject Icon;
-
-    [SerializeField] private float pillLifetime;
+    public GameObject slider;
+    public float pillLifetime;
 
     private Renderer meshRenderer;
     private Collider Collider;
 
-    private bool timerStarted = false;
-    private float elapsedTime;
+    public bool timerStarted = false;
+    public float elapsedTime;
     public AudioSource audioplay;
     public AudioClip revealcollect;
 
@@ -28,6 +28,7 @@ public class RevealPill : MonoBehaviour
     {
         if (isRevealed)
         {
+            slider.SetActive(true);
             mainCamera.SetActive(false);
             timerStarted = true;
 
@@ -54,6 +55,7 @@ public class RevealPill : MonoBehaviour
             
              if (isRevealed)
         {
+                slider.SetActive(true);
                 meshRenderer.enabled = false;
                 Collider.enabled = false;
                 mainCamera.SetActive(false);
@@ -67,6 +69,7 @@ public class RevealPill : MonoBehaviour
 
    public void ResetPillEffects()
     {
+        slider.SetActive(false);
         isRevealed = false;
         mainCamera.SetActive(true);
         timerStarted = false;

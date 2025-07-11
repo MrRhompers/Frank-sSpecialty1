@@ -10,20 +10,20 @@ public class CheckPoints : MonoBehaviour
 
     private void Start()
     {
-        movementScript = FindAnyObjectByType<Movement>();
-        shrinkPillScript = FindAnyObjectByType<ShrinkPill>();
-        revealPillScript = FindAnyObjectByType<RevealPill>();
-        titaniumPillScript = FindAnyObjectByType<TitaniumPill>();
+        //movementScript = FindAnyObjectByType<Movement>();
+        //shrinkPillScript = FindAnyObjectByType<ShrinkPill>();
+        //revealPillScript = FindAnyObjectByType<RevealPill>();
+        //titaniumPillScript = FindAnyObjectByType<TitaniumPill>();
     }
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            movementScript.SlickPillTimer = 0f;
-            movementScript.FloatPillTimer = 0f;
-            shrinkPillScript.UnShrink();
-            revealPillScript.ResetPillEffects();
-            titaniumPillScript.ResetPillEffects();
+            //movementScript.SlickPillTimer = 0f;
+            //movementScript.FloatPillTimer = 0f;
+            //shrinkPillScript.UnShrink();
+            //revealPillScript.ResetPillEffects();
+            //titaniumPillScript.ResetPillEffects();
             CheckPointManager manager = FindAnyObjectByType<CheckPointManager>();
             manager.UpdateCheckpoint(checkpointIndex);
         }

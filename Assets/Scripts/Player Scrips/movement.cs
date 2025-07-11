@@ -48,6 +48,8 @@ public class Movement : MonoBehaviour
     [Header("User Interface")]
     public GameObject slickIcon;
     public GameObject floatIcon;
+    public GameObject slider1;
+    public GameObject slider2;
 
     [Header("Random Controls")]
 
@@ -176,6 +178,7 @@ public class Movement : MonoBehaviour
     {
         if (hasSlickPill && !slickEffectStarted && PillReadySlick)
         {
+            slider1.SetActive(true);
             WalkSpeed = 30;
             SmoothMoveTime = 4f;
             SlickPillTimer = 30f;
@@ -189,7 +192,7 @@ public class Movement : MonoBehaviour
 
             if (SlickPillTimer <= 0f)
             {
-               
+                slider1.SetActive(false);
                 WalkSpeed = 10;
                 SmoothMoveTime = 0f;
                 hasSlickPill = false;
@@ -206,7 +209,7 @@ public class Movement : MonoBehaviour
        
         if (hasFloatPill && !floatEffectStarted && PillReadyFloat) 
         {
-           
+            slider2.SetActive(true);
             grav = -2f;
             jumpforce = 8f;
             FloatPillTimer = 30f;
@@ -219,6 +222,7 @@ public class Movement : MonoBehaviour
 
             if (FloatPillTimer <= 0)
             {
+                slider2.SetActive(false);
                 grav = -9f;
                 jumpforce = 2f;
                 hasFloatPill = false;
@@ -236,6 +240,7 @@ public class Movement : MonoBehaviour
     {
         if (other.gameObject.CompareTag("SlickPill")) 
         {
+            slider1.SetActive(true);
             hasSlickPill = true;
             PillReadySlick = true;
             SlickPill();
@@ -245,6 +250,7 @@ public class Movement : MonoBehaviour
         }
         if (other.gameObject.CompareTag("FloatPill"))
         {
+            slider2.SetActive(true);
             hasFloatPill = true;
             PillReadyFloat = true;
             FloatPill();

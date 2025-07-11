@@ -126,7 +126,12 @@ MonoBehaviour:
   isRevealed: 0
   mainCamera: {fileID: 0}
   Icon: {fileID: 0}
+  slider: {fileID: 0}
   pillLifetime: 30
+  timerStarted: 0
+  elapsedTime: 0
+  audioplay: {fileID: 0}
+  revealcollect: {fileID: 8300000, guid: 59e2f1e63488d6749877f254077a14e4, type: 3}
 --- !u!1 &8568828102768292172
 GameObject:
   m_ObjectHideFlags: 0

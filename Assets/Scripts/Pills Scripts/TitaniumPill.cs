@@ -6,6 +6,7 @@ public class TitaniumPill : MonoBehaviour
     public float pillLifetime;
 
     public GameObject Icon;
+    public GameObject slider;
 
     public bool hasTitaniumPill = false;
 
@@ -19,7 +20,7 @@ public class TitaniumPill : MonoBehaviour
     public bool timerStarted = false;
     public bool effectStarted = false;
     public bool canUsePill = false;
-    private float elapsedTime;
+    public float elapsedTime;
     public AudioSource audioplay;
     public AudioClip titaniumcollect;
 
@@ -33,8 +34,10 @@ public class TitaniumPill : MonoBehaviour
 
     private void Update()
     {
+  
         if (hasTitaniumPill && inventoryScript.canUsePill && effectStarted)
         {
+            slider.SetActive(true);
             meshRenderer.enabled = false;
             Collider.enabled = false;
 
@@ -70,6 +73,7 @@ public class TitaniumPill : MonoBehaviour
         ShuffleArray(directions);
 
         movementScript.SetScrambledControls(directions[0], directions[2], directions[1], directions[3]);
+        timerStarted = true;
 
         Invoke("ResetPillEffects", pillLifetime);
     }
@@ -78,6 +82,7 @@ public class TitaniumPill : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            slider.SetActive(true);
            Icon.SetActive(true);
            hasTitaniumPill = true;
            RandomControls();
@@ -98,6 +103,7 @@ public class TitaniumPill : MonoBehaviour
 
     public void ResetPillEffects()
     {
+        slider.SetActive(false);
         hasTitaniumPill = false;
         movementScript.ResetControls();
         elapsedTime = 0;
