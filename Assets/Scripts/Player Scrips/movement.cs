@@ -19,6 +19,11 @@ public class Movement : MonoBehaviour
     public float defaultYpos;
 
     [Header("Pill Timers")]
+    private float slickLifetime;
+    private float floatLifetime;
+
+    public bool slickEffectStarted = false;
+    public bool floatEffectStarted = false;
     public float SlickPillTimer;
     public float FloatPillTimer;
     public bool PillReadySlick;  
@@ -28,7 +33,6 @@ public class Movement : MonoBehaviour
 
     [Header("References")]
     public Camera PlayerCam;
-
    
     private CharacterController controller;
     private Vector3 MoveVector;
@@ -38,10 +42,16 @@ public class Movement : MonoBehaviour
     public bool isgrounded;
     private float timer;
 
+    [Header("User Interface")]
+    public GameObject slickIcon;
+    public GameObject floatIcon;
+
     void Start()
     {
         controller = GetComponent<CharacterController>();
         defaultYpos = PlayerCam.transform.localPosition.y;
+        slickLifetime = SlickPillTimer;
+        floatLifetime = FloatPillTimer;
     }
 
     void Update()
@@ -55,16 +65,11 @@ public class Movement : MonoBehaviour
         {
             JumpPlayer();
         }
-        if (FloatPillTimer == 0) 
-        {
-            grav = -9f;
-            jumpforce = 2f;
-        }
-        if (SlickPillTimer == 0) 
-        {
-            SmoothMoveTime = 0;
-            WalkSpeed = 10;
-        }
+
+        SlickPill();
+        FloatPill();
+
+        //print(SlickPillTimer);  
     }
 
     public void UpdateGrounded()
@@ -130,46 +135,61 @@ public class Movement : MonoBehaviour
 
     public void SlickPill()
     {
-        if (SlickPillTimer == 0)
-        { 
-            PillReadySlick = true;
-        }
-
-        if (PillReadySlick)
+        if (hasSlickPill && !slickEffectStarted && PillReadySlick)
         {
-            hasSlickPill = true;
             WalkSpeed = 30;
-            SlickPillTimer = 30f;
             SmoothMoveTime = 4f;
-            PillReadySlick = false;
+            //SlickPillTimer = 3f;
+            slickEffectStarted = true;
+           
         }
 
-        if (SlickPillTimer > 0)
+        if (slickEffectStarted)
         {
             SlickPillTimer -= Time.deltaTime;
+
+            if (SlickPillTimer <= 0f)
+            {
+               
+                WalkSpeed = 10;
+                SmoothMoveTime = 0f;
+                hasSlickPill = false;
+                slickEffectStarted = false;
+                SlickPillTimer = slickLifetime;
+                PillReadySlick = false;
+            }
         }
     }
 
     public void FloatPill()
     {
         
-        if (FloatPillTimer == 0)
+       
+        if (hasFloatPill && !floatEffectStarted && PillReadyFloat) 
         {
            
-            PillReadyFloat = true;
-        }
-        if (PillReadyFloat) 
-        {
-            hasFloatPill = true;
             grav = -2f;
-            jumpforce = 8;
-            PillReadyFloat = false;
-            FloatPillTimer = 30f;
+            jumpforce = 8f;
+            //FloatPillTimer = 3f;
+            floatEffectStarted = true;
         }
-        if (FloatPillTimer > 0)
+
+        if (floatEffectStarted)
         {
             FloatPillTimer -= Time.deltaTime;
+
+            if (FloatPillTimer <= 0)
+            {
+                grav = -9f;
+                jumpforce = 2f;
+                hasFloatPill = false;
+                floatEffectStarted = false;
+                FloatPillTimer = floatLifetime;
+                PillReadyFloat = false;
+            }
         }
+
+       
 
 
     }
@@ -177,13 +197,19 @@ public class Movement : MonoBehaviour
     {
         if (other.gameObject.CompareTag("SlickPill")) 
         {
+            hasSlickPill = true;
+            PillReadySlick = true;
             SlickPill();
             Destroy(other.gameObject);
+            slickIcon.SetActive(true);
         }
         if (other.gameObject.CompareTag("FloatPill"))
         {
-            Destroy(other.gameObject);
+            hasFloatPill = true;
+            PillReadyFloat = true;
             FloatPill();
+            Destroy(other.gameObject);
+            floatIcon.SetActive(true);
         }
     }
 }

@@ -302,12 +302,18 @@ MonoBehaviour:
   WalkBobSpeed: 14
   WalkBobAmount: 0.05
   defaultYpos: 0
-  SlickPillTimer: 0
-  FloatPillTimer: 0
+  slickEffectStarted: 0
+  floatEffectStarted: 0
+  SlickPillTimer: 30
+  FloatPillTimer: 30
   PillReadySlick: 0
   PillReadyFloat: 0
+  hasSlickPill: 0
+  hasFloatPill: 0
   PlayerCam: {fileID: 7206380706493037690}
   isgrounded: 0
+  slickIcon: {fileID: 0}
+  floatIcon: {fileID: 0}
 --- !u!1 &6067041402587421483
 GameObject:
   m_ObjectHideFlags: 0

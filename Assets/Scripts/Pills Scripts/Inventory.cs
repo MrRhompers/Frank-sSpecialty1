@@ -57,17 +57,23 @@ public class Inventory : MonoBehaviour
     {
         if (canPress1)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha1))
+            if (Input.GetKeyDown(KeyCode.Alpha1) && !movementScript.PillReadySlick)
             {
+                movementScript.slickEffectStarted = false;
+                movementScript.hasSlickPill = true;
                 movementScript.PillReadySlick = true;
+                movementScript.SlickPill();
             }
         }
 
         if (canPress2)
         {
-            if (Input.GetKeyDown(KeyCode.Alpha2))
+            if (Input.GetKeyDown(KeyCode.Alpha2) && !movementScript.PillReadyFloat)
             {
-                movementScript.PillReadyFloat = true;
+                movementScript.floatEffectStarted = false;
+                movementScript.hasFloatPill = true;
+                movementScript.PillReadyFloat = true;   
+                movementScript.FloatPill();
             }
         }
 
