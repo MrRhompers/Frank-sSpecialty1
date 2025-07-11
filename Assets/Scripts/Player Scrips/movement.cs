@@ -221,6 +221,10 @@ public class Movement : MonoBehaviour
         {
             checkPointManager.Respawn();
         }
+        if (other.gameObject.CompareTag("Crusher"))
+        {
+            checkPointManager.Respawn();
+        }
     }
 }
 
