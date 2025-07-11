@@ -13,6 +13,8 @@ public class RevealPill : MonoBehaviour
 
     private bool timerStarted = false;
     private float elapsedTime;
+    public AudioSource audioplay;
+    public AudioClip revealcollect;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -57,7 +59,8 @@ public class RevealPill : MonoBehaviour
                 mainCamera.SetActive(false);
                 Icon.SetActive(true);
                 Invoke("ResetPillEffects", pillLifetime);
-        }
+                audioplay.PlayOneShot(revealcollect);
+            }
         }
     }
 

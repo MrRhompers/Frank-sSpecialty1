@@ -33,6 +33,7 @@ public class Movement : MonoBehaviour
 
     [Header("References")]
     public Camera PlayerCam;
+    Frank frankRef;
    
     private CharacterController controller;
     private Vector3 MoveVector;
@@ -54,6 +55,11 @@ public class Movement : MonoBehaviour
     private KeyCode moveLeft = KeyCode.A;
     private KeyCode moveRight = KeyCode.D;
     public bool isControlScrambled = false;
+
+
+    public AudioClip slickcollect;
+    public AudioClip floatcollect;
+    public AudioSource audioplay;
     void Start()
     {
         controller = GetComponent<CharacterController>();
@@ -64,6 +70,7 @@ public class Movement : MonoBehaviour
         defaultYpos = PlayerCam.transform.localPosition.y;
         slickLifetime = SlickPillTimer;
         floatLifetime = FloatPillTimer;
+        frankRef = FindAnyObjectByType<Frank>();
 
     }
 
@@ -232,6 +239,7 @@ public class Movement : MonoBehaviour
             SlickPill();
             Destroy(other.gameObject);
             slickIcon.SetActive(true);
+            audioplay.PlayOneShot(slickcollect);
         }
         if (other.gameObject.CompareTag("FloatPill"))
         {
@@ -240,13 +248,26 @@ public class Movement : MonoBehaviour
             FloatPill();
             Destroy(other.gameObject);
             floatIcon.SetActive(true);
+            audioplay.PlayOneShot(floatcollect);
         }
         if (other.gameObject.CompareTag("Spikes")) 
         {
+            frankRef.PlaySpikeDeath();
             checkPointManager.Respawn();
         }
         if (other.gameObject.CompareTag("Crusher"))
         {
+            frankRef.PlaycrushedDeath();
+            checkPointManager.Respawn();
+        }
+        if (other.gameObject.CompareTag("Fire"))
+        {
+            frankRef.PlayfireDeath();
+            checkPointManager.Respawn();
+        }
+        if (other.gameObject.CompareTag("Water"))
+        {
+            frankRef.Playwaterdeath();
             checkPointManager.Respawn();
         }
     }

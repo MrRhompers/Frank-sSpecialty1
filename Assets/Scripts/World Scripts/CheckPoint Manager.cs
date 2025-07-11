@@ -9,11 +9,13 @@ public class CheckPointManager : MonoBehaviour
 
     private CharacterController characterController;
     private int currentRespawnPoint = 0;
+    Frank frankRef;
 
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
         characterController = player.GetComponent<CharacterController>();
+        frankRef = FindAnyObjectByType<Frank>();
     }
 
     void Update()
@@ -25,6 +27,7 @@ public class CheckPointManager : MonoBehaviour
     {
         if (player.transform.position.y <= -20)
         {
+            frankRef.PlayfallDeath();
             Respawn();
         }
     }

@@ -114,6 +114,13 @@ public class Inventory : MonoBehaviour
                 TitaniumPillScript.effectStarted = true;
                 TitaniumPillScript.timerStarted = true;
                 canUsePill = true;
+                
+            }
+        }
+        if (canPress6) 
+        {
+            if (Input.GetKeyUp(KeyCode.Alpha5))
+            {
                 Frankref.PlayFrankPill();
             }
         }

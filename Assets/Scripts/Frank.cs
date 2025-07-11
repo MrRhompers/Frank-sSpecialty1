@@ -7,6 +7,7 @@ public class Frank : MonoBehaviour
     public AudioClip[] SpikeDie;
     public AudioClip[] FireDie;
     public AudioClip[] FrankPill;
+    public AudioClip[] waterdeath;
     public AudioSource audioplay;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -33,6 +34,11 @@ public class Frank : MonoBehaviour
     public void PlayFrankPill()
     {
         AudioClip RandomDeath = FrankPill[Random.Range(0, FrankPill.Length)];
+        audioplay.PlayOneShot(RandomDeath);
+    }
+    public void Playwaterdeath()
+    {
+        AudioClip RandomDeath = waterdeath[Random.Range(0, waterdeath.Length)];
         audioplay.PlayOneShot(RandomDeath);
     }
 }

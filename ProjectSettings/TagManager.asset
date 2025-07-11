@@ -12,6 +12,9 @@ TagManager:
   - Spikes
   - Fall
   - Crusher
+  - ShrinkPill
+  - Fire
+  - Water
   layers:
   - Default
   - TransparentFX

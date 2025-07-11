@@ -20,6 +20,8 @@ public class TitaniumPill : MonoBehaviour
     public bool effectStarted = false;
     public bool canUsePill = false;
     private float elapsedTime;
+    public AudioSource audioplay;
+    public AudioClip titaniumcollect;
 
     private void Start()
     {
@@ -79,6 +81,7 @@ public class TitaniumPill : MonoBehaviour
            Icon.SetActive(true);
            hasTitaniumPill = true;
            RandomControls();
+            audioplay.PlayOneShot(titaniumcollect);
         }
     }
 

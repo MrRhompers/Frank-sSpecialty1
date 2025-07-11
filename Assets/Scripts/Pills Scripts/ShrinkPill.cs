@@ -18,6 +18,8 @@ public class ShrinkPill : MonoBehaviour
 
     private bool timerStarted = false;
     private float elapsedTime;
+    public AudioSource audioplay;
+    public AudioClip shrinkcollect;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -64,6 +66,7 @@ public class ShrinkPill : MonoBehaviour
                 Player.transform.localScale = shrunkSize;
                 Icon.SetActive(true);
                 Invoke("UnShrink", pillLifetime);
+                audioplay.PlayOneShot(shrinkcollect);
             }
 
         }
