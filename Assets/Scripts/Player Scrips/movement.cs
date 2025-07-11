@@ -41,6 +41,7 @@ public class Movement : MonoBehaviour
     private Vector3 playervelocity;
     public bool isgrounded;
     private float timer;
+    private CheckPointManager checkPointManager;
 
     [Header("User Interface")]
     public GameObject slickIcon;
@@ -49,9 +50,14 @@ public class Movement : MonoBehaviour
     void Start()
     {
         controller = GetComponent<CharacterController>();
+        if (checkPointManager == null)
+        {
+            checkPointManager = FindAnyObjectByType<CheckPointManager>();
+        }
         defaultYpos = PlayerCam.transform.localPosition.y;
         slickLifetime = SlickPillTimer;
         floatLifetime = FloatPillTimer;
+
     }
 
     void Update()
@@ -210,6 +216,10 @@ public class Movement : MonoBehaviour
             FloatPill();
             Destroy(other.gameObject);
             floatIcon.SetActive(true);
+        }
+        if (other.gameObject.CompareTag("Spikes")) 
+        {
+            checkPointManager.Respawn();
         }
     }
 }

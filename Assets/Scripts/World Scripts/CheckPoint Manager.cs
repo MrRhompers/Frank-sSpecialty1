@@ -27,7 +27,7 @@ public class CheckPointManager : MonoBehaviour
         }
     }
 
-    void Respawn()
+   public void Respawn()
     {
         player.transform.position = respawnPoints[currentRespawnPoint].position;
 
