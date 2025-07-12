@@ -2,15 +2,9 @@ using UnityEngine;
 
 public class Quit : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    public void QuitGame()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        // Quit the game
+        Application.Quit();
     }
 }
