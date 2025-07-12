@@ -9,6 +9,8 @@ public class ShrinkPill : MonoBehaviour
 
     private GameObject Player;
 
+    private Frank frankRef;
+
     private Renderer meshRenderer;
     private Collider Collider;
 
@@ -29,6 +31,7 @@ public class ShrinkPill : MonoBehaviour
         meshRenderer = GetComponent<Renderer>();
         Collider = GetComponent<Collider>();
         originalSize = Player.transform.localScale;
+        frankRef = FindAnyObjectByType<Frank>();
 
     }
 
@@ -69,7 +72,7 @@ public class ShrinkPill : MonoBehaviour
                 Player.transform.localScale = shrunkSize;
                 Icon.SetActive(true);
                 Invoke("UnShrink", pillLifetime);
-                audioplay.PlayOneShot(shrinkcollect);
+                frankRef.PlayQueuedClip(shrinkcollect);
             }
 
         }

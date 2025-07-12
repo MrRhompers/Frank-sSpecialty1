@@ -1,4 +1,6 @@
+using System.Collections.Generic;
 using UnityEngine;
+using System.Collections;
 
 public class Frank : MonoBehaviour
 {
@@ -7,38 +9,77 @@ public class Frank : MonoBehaviour
     public AudioClip[] SpikeDie;
     public AudioClip[] FireDie;
     public AudioClip[] FrankPill;
-    public AudioClip[] waterdeath;
-    public AudioSource audioplay;
+    public AudioClip[] WaterDeath;
+    public AudioSource audioPlay;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-   public void PlayfallDeath() 
+    private Queue<AudioClip> clipQueue = new Queue<AudioClip>();
+    private bool isPlaying = false;
+
+    void Start()
     {
-        AudioClip RandomDeath = FallingDie[Random.Range(0, FallingDie.Length)];
-        audioplay.PlayOneShot(RandomDeath);
+        StartCoroutine(PlayQueue());
     }
+
+    public void PlayfallDeath()
+    {
+        EnqueueClip(FallingDie);
+    }
+
     public void PlaycrushedDeath()
     {
-        AudioClip RandomDeath = CrushedDie[Random.Range(0, CrushedDie.Length)];
-        audioplay.PlayOneShot(RandomDeath);
+        EnqueueClip(CrushedDie);
     }
+
     public void PlaySpikeDeath()
     {
-        AudioClip RandomDeath = SpikeDie[Random.Range(0, SpikeDie.Length)];
-        audioplay.PlayOneShot(RandomDeath);
+        EnqueueClip(SpikeDie);
     }
+
     public void PlayfireDeath()
     {
-        AudioClip RandomDeath = FireDie[Random.Range(0, FireDie.Length)];
-        audioplay.PlayOneShot(RandomDeath); 
+        EnqueueClip(FireDie);
     }
+
     public void PlayFrankPill()
     {
-        AudioClip RandomDeath = FrankPill[Random.Range(0, FrankPill.Length)];
-        audioplay.PlayOneShot(RandomDeath);
+        EnqueueClip(FrankPill);
     }
+
     public void Playwaterdeath()
     {
-        AudioClip RandomDeath = waterdeath[Random.Range(0, waterdeath.Length)];
-        audioplay.PlayOneShot(RandomDeath);
+        EnqueueClip(WaterDeath);
+    }
+
+    private void EnqueueClip(AudioClip[] clipArray)
+    {
+        if (clipArray == null || clipArray.Length == 0) return;
+
+        AudioClip selected = clipArray[Random.Range(0, clipArray.Length)];
+        clipQueue.Enqueue(selected);
+    }
+
+    private IEnumerator PlayQueue()
+    {
+        while (true)
+        {
+            if (!isPlaying && clipQueue.Count > 0)
+            {
+                AudioClip nextClip = clipQueue.Dequeue();
+                audioPlay.clip = nextClip;
+                audioPlay.Play();
+                isPlaying = true;
+
+                yield return new WaitForSeconds(nextClip.length);
+                isPlaying = false;
+            }
+
+            yield return null;
+        }
+    }
+
+    public void PlayQueuedClip(AudioClip clip)
+    {
+        if (clip != null)
+            clipQueue.Enqueue(clip);
     }
 }

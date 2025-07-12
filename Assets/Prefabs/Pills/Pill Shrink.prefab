@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4789467393478307978}
   - component: {fileID: 3463701412131341383}
+  - component: {fileID: 6064863383517197330}
   m_Layer: 0
   m_Name: Pill Shrink
   m_TagString: ShrinkPill
@@ -50,10 +51,29 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6064863383517197330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 128705007874389188}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8a129088347d1e4392aed785ecfaafe, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pillLifetime: 30
+  Icon: {fileID: 0}
+  slider: {fileID: 0}
+  hasShrunk: 0
+  elapsedTime: 0
+  audioplay: {fileID: 0}
+  shrinkcollect: {fileID: 8300000, guid: 5f98f0732c9f5224ab5cf05d224bab7d, type: 3}
 --- !u!1001 &4928834359817914525
 PrefabInstance:
   m_ObjectHideFlags: 0

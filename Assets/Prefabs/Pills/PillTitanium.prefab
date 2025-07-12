@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8172978566686808849}
   - component: {fileID: 8029572560393366187}
+  - component: {fileID: 7773730566468356970}
   m_Layer: 0
   m_Name: PillTitanium
   m_TagString: TitaniumPill
@@ -50,10 +51,32 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7773730566468356970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9041610179701124014}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5eaf42a95b5f0444ab8924341a31d1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pillLifetime: 30
+  Icon: {fileID: 0}
+  slider: {fileID: 0}
+  hasTitaniumPill: 0
+  timerStarted: 0
+  effectStarted: 0
+  canUsePill: 0
+  elapsedTime: 0
+  audioplay: {fileID: 0}
+  titaniumcollect: {fileID: 8300000, guid: fc7d79b92364c604fb537637be0ae7be, type: 3}
 --- !u!1001 &9145265642621523653
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -76,7 +99,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 68dc0b68693d04c4b9a2b208246089f7, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -1.1
+      value: -0.14
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 68dc0b68693d04c4b9a2b208246089f7, type: 3}
       propertyPath: m_LocalPosition.y
@@ -84,11 +107,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 68dc0b68693d04c4b9a2b208246089f7, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -0.3
+      value: -0.03
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 68dc0b68693d04c4b9a2b208246089f7, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.47490683
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 68dc0b68693d04c4b9a2b208246089f7, type: 3}
       propertyPath: m_LocalRotation.x
@@ -96,7 +119,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 68dc0b68693d04c4b9a2b208246089f7, type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: -0.8800361
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 68dc0b68693d04c4b9a2b208246089f7, type: 3}
       propertyPath: m_LocalRotation.z
@@ -108,7 +131,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 68dc0b68693d04c4b9a2b208246089f7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: -123.293
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 68dc0b68693d04c4b9a2b208246089f7, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z

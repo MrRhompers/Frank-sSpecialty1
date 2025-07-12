@@ -16,11 +16,13 @@ public class RevealPill : MonoBehaviour
     public AudioSource audioplay;
     public AudioClip revealcollect;
 
+    private Frank frankRef;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         meshRenderer = GetComponent<Renderer>();
         Collider = GetComponent<Collider>();
+        frankRef = FindAnyObjectByType<Frank>();
     }
 
     // Update is called once per frame
@@ -61,7 +63,7 @@ public class RevealPill : MonoBehaviour
                 mainCamera.SetActive(false);
                 Icon.SetActive(true);
                 Invoke("ResetPillEffects", pillLifetime);
-                audioplay.PlayOneShot(revealcollect);
+                frankRef.PlayQueuedClip(revealcollect);
             }
         }
     }

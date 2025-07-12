@@ -246,7 +246,7 @@ public class Movement : MonoBehaviour
             SlickPill();
             Destroy(other.gameObject);
             slickIcon.SetActive(true);
-            audioplay.PlayOneShot(slickcollect);
+            frankRef.PlayQueuedClip(slickcollect);
         }
         if (other.gameObject.CompareTag("FloatPill"))
         {
@@ -256,7 +256,7 @@ public class Movement : MonoBehaviour
             FloatPill();
             Destroy(other.gameObject);
             floatIcon.SetActive(true);
-            audioplay.PlayOneShot(floatcollect);
+            frankRef.PlayQueuedClip(floatcollect);
         }
         if (other.gameObject.CompareTag("Spikes") && !titaniumPillScript.hasTitaniumPill) 
         {

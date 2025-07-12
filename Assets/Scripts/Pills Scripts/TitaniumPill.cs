@@ -24,12 +24,15 @@ public class TitaniumPill : MonoBehaviour
     public AudioSource audioplay;
     public AudioClip titaniumcollect;
 
+    private Frank frankRef;
+
     private void Start()
     {
         movementScript = FindAnyObjectByType<Movement>();
         inventoryScript = FindAnyObjectByType<Inventory>();
         meshRenderer = GetComponent<Renderer>();
         Collider = GetComponent<Collider>();
+        frankRef = FindAnyObjectByType<Frank>();
     }
 
     private void Update()
@@ -86,7 +89,7 @@ public class TitaniumPill : MonoBehaviour
            Icon.SetActive(true);
            hasTitaniumPill = true;
            RandomControls();
-            audioplay.PlayOneShot(titaniumcollect);
+            frankRef.PlayQueuedClip(titaniumcollect);
         }
     }
 

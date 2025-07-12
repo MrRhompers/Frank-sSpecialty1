@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1296092194961942466}
   - component: {fileID: 6821311985995368596}
+  - component: {fileID: 5034315741586076118}
   m_Layer: 0
   m_Name: PillReveal
   m_TagString: RevealPill
@@ -50,10 +51,31 @@ BoxCollider:
   m_LayerOverridePriority: 0
   m_IsTrigger: 1
   m_ProvidesContacts: 0
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 3
   m_Size: {x: 2, y: 2, z: 2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &5034315741586076118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8568828102768292172}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2261488a7055e724f8ce4d86a3709cf4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isRevealed: 0
+  mainCamera: {fileID: 0}
+  Icon: {fileID: 0}
+  slider: {fileID: 0}
+  pillLifetime: 30
+  timerStarted: 0
+  elapsedTime: 0
+  audioplay: {fileID: 0}
+  revealcollect: {fileID: 8300000, guid: 59e2f1e63488d6749877f254077a14e4, type: 3}
 --- !u!1001 &7008350710057756485
 PrefabInstance:
   m_ObjectHideFlags: 0
