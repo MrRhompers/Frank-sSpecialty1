@@ -6,6 +6,9 @@ public class Inventory : MonoBehaviour
     private ShrinkPill shrinkPillScript;
     private RevealPill revealPillScript;
     private TitaniumPill TitaniumPillScript;
+    private FrankPill FrankPillScript;
+
+    
 
     private bool canPress1;
     private bool canPress2;
@@ -24,6 +27,7 @@ public class Inventory : MonoBehaviour
         revealPillScript = FindAnyObjectByType<RevealPill>();
         shrinkPillScript = FindAnyObjectByType<ShrinkPill>();
         TitaniumPillScript = FindAnyObjectByType<TitaniumPill>();
+        FrankPillScript = FindAnyObjectByType<FrankPill>(); 
        Frankref = FindAnyObjectByType<Frank>();
     }
 
@@ -57,6 +61,11 @@ public class Inventory : MonoBehaviour
         {
             canPress5 = true;
             
+        }
+        if (FrankPillScript.hasFrank)
+        {
+            canPress6 = true;
+
         }
     }
 

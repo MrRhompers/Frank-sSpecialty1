@@ -7,6 +7,7 @@ public class PillEffectsTimer : MonoBehaviour
     private ShrinkPill shrinkPillScript;
     private RevealPill revealPillScript;
     private TitaniumPill titaniumPillScript;
+    private FrankPill FrankPillScript;
 
     public float totalSlickTime;
     public float totalFloatTIme;
@@ -24,6 +25,7 @@ public class PillEffectsTimer : MonoBehaviour
         shrinkPillScript = FindAnyObjectByType<ShrinkPill>();
         revealPillScript = FindAnyObjectByType<RevealPill>();
         titaniumPillScript = FindAnyObjectByType<TitaniumPill>();
+        FrankPillScript = FindAnyObjectByType<FrankPill>(); 
     }
 
     // Update is called once per frame
@@ -41,5 +43,6 @@ public class PillEffectsTimer : MonoBehaviour
         shrink.value = 1 - (shrinkPillScript.elapsedTime / shrinkPillScript.pillLifetime);
         reveal.value = 1 - (revealPillScript.elapsedTime /revealPillScript.pillLifetime);
         titanium.value = 1 - (titaniumPillScript.elapsedTime / titaniumPillScript.pillLifetime);
+        Frank.value = 1 - (FrankPillScript.elapsedTime /FrankPillScript.pillLifetime);
     }
 }

@@ -82,4 +82,10 @@ public class Frank : MonoBehaviour
         if (clip != null)
             clipQueue.Enqueue(clip);
     }
+
+    public void StopAudio()
+    {
+        audioPlay.Stop();
+        isPlaying = false;
+    }
 }
